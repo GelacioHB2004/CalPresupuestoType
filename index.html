@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Ingresos y Gastos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .balance-box,
+        .history-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 45%;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .income-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .expense-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        #balance {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #555;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        .income {
+            background-color: #e7f9e7;
+            color: green;
+        }
+
+        .expense {
+            background-color: #f9e7e7;
+            color: red;
+        }
+
+        .income:hover {
+            background-color: #c4f7c4;
+        }
+
+        .expense:hover {
+            background-color: #f7c4c4;
+        }
+
+        .mensaje {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .success {
+            background-color: #28a745;
+            color: white;
+            border: 2px solid #1e7e34;
+        }
+
+        .error {
+            background-color: #dc3545;
+            color: white;
+            border: 2px solid #b21f2d;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mensaje" class="mensaje"></div>
+
+    <div class="container">
+        <!-- Balance Section -->
+        <div class="balance-box">
+            <h2>Calculadora de Presupuesto Personal</h2>
+            <input type="number" id="monto" placeholder="Monto">
+            <input type="text" id="descripcion" placeholder="Descripción">
+            <button class="income-btn" onclick="agregarTransaccion('ingreso')">Agregar Ingreso</button>
+            <button class="expense-btn" onclick="agregarTransaccion('gasto')">Agregar Gasto</button>
+            <h3>Balance $: <span id="balance">0</span></h3>
+            <h3>Ingresos Totales $: <span id="total-ingresos">0</span></h3>
+            <h3>Gastos Totales $: <span id="total-gastos">0</span></h3>
+        </div>
+
+        <!-- History Section -->
+        <div class="history-box">
+            <h3>Historial de Transacciones</h3>
+            <table id="historial-table">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Monto</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-transacciones">
+                    <!-- Las transacciones se insertarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="calculadora.js"></script>
+</body>
+
+</html>
